@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>personal website</title>
+    <script> src="https://cdn.tailwindcss.com"></script>
+    <style>
+nav ul {
+  display: flex;
+  text-align: center;
+  background: #333;
+  size : 70px;
+}
+nav ul li a {
+  color: white;
+  padding: 15px;
+}
+.banner {
+  position: relative;
+  padding-bottom: 10%;
+}
+.banner img {
+  width: 100%;
+}
+.hover-text {
+  position: absolute;
+  width: 100%;
+  background: rgb(0,0,0,0.7);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  opacity: 0;
+}
+.banner:hover .hover-text {
+  opacity: 1;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  font-style: bold;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 5px;
+}
+body, nav, ul {
+  margin: 0;
+  padding: 0;
+}
+video
+{
+    width:100% ;
+}
+.p1{
+  text-align: center;
+  padding-bottom: 5%;
+
+
+}
+h2
+{
+  font-size : 40px;
+  font-weight:bolder;
+  text-align: center;
+  padding-bottom: 5%;
+}
+h1
+{
+  font-size : 40px;
+  font-weight:bolder;
+  text-align: center;
+}
+#signup {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+#signup input {
+  padding: 10px;
+  width: 250px;
+}
+
+#signup button {
+  padding: 10px;
+  margin-left: 5px;
+}
+.profile-image ,.project-image{
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+
+}
+.contact {
+    text-align: center;
+    color: blue;
+    padding-bottom: 5%;
+}
+.project-title {
+    text-align: center;
+    color: rgb(35, 35, 73);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+    </style>
+  </head>
+  <body>
+    <nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="banner">
+  <img src="\1706.jpg" alt="Banner Image">
+  <div class="hover-text">Hey, I'm Jaskirat</div>
+</div>
+<section id="about">
+  <h1 >About Me</h1>
+  <img class="profile-image" src="\99df05b4-d55b-4277-9c89-9da815ff34ca.jpg" alt="Profile Picture">
+  <p class="p1">Hello! I’m Jaskirat, a student at Deakin University exploring web development.</p>
+</section>
+<section id="work">
+  <h2>My Projects</h2>
+  <div class="project">
+    <img class="project-image" src="\18491.jpg" alt="Project 1">
+    <h3 class="project-title">Smart Home IoT Project</h3>
+    <p class="p1">It is a smart home network where devices such as lights,fans,air conditioner and sensors communicate through a network where i have implimented the automation such that the home appliances works according to the defined readings. </p>
+  </div>
+  <div class="project">
+    <img class="project-image" src="\business-messy-creative-strategy-education-occupation-concept.jpg" alt="Project 2">
+    <h3 class="project-title">Real Estate Database Management Project</h3>
+    <p class="p1">I have designed and implimented  a database  system for realestate company in which i have created entities such as Property , Owner,Customer,Employee etc along with relationship,constraints,triggers,stored procedures and functions.</p>
+  </div>
+</section>
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="\double-exposure-caucasian-man-virtual-reality-vr-headset-is-presumably-gamer-hacker-cracking-code-into-secure-network-server-with-lines-code.jpg" alt="Gallery Image 1">
+    <img src="\business-people-working-laptop-meeting.jpg" alt="Gallery Image 2">
+    <img src="\3d-rendering-biorobots-concept.jpg" alt="Gallery Image 3">
+  </div>
+</section>
+<section id="contact">
+  <h1 >Contact</h1>
+  <p class="contact">E-mail : jaskirat9040.ai25@chitkara.edu.in</p>
+</section>
+<section id="signup">
+  <h2>Subscribe</h2>
+
+  <form id="subscribeForm">
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <p id="message"></p>
+</section>
+
+<script>
+    const form = document.getElementById("subscribeForm");
+
+form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message");
+
+    const response = await fetch("/subscribe", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email })
+    });
+
+    const data = await response.json();
+
+    message.textContent = data.message;
+
+    if (response.ok) {
+        form.reset();
+    }
+});
+</script> 
+
+</body>
+</html>
